@@ -10,9 +10,10 @@
 ## ディレクトリ構成
 ```plaintext
 Algorithm-Solutions/
-│── 問題名/
-│    ├── README.md  # 問題の説明・解法・気づき
-│    ├── python/    # Pythonの解答
-│    ├── javascript/ # JavaScriptの解答
-│    ├── php/       # PHPの解答
-│    ├── java/      # Javaの解答
+│── カテゴリー 
+│      ├── 問題名/
+│            ├── README.md  # 問題の説明・解法・気づき
+│            ├── python/    # Pythonの解答
+│            ├── javascript/ # JavaScriptの解答
+│            ├── php/       # PHPの解答
+│            ├── java/      # Javaの解答
