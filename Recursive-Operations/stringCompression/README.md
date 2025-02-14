@@ -5,23 +5,23 @@
 - **出力のデータ型**：`string`  
 
 ## テストケース  
-`stringCompression("aaabbb")` 
---> a3b3
-`stringCompression("aaabbbc")`
---> a3b3c
-`stringCompression("aaabbbCCL")` 
---> a3b3C2L
-`stringCompression("aaabbbCCLL")`
---> a3b3C2L2
-`stringCompression("abceeaaaddbbb")` 
---> abce2a3d2b3
-`stringCompression("aaabbbaaaaccaaaaba")` 
---> a3b3a4c2a4ba
-`stringCompression("a")`
---> a
+`stringCompression("aaabbb")` <br>
+--> a3b3<br>
+`stringCompression("aaabbbc")`<br>
+--> a3b3c<br>
+`stringCompression("aaabbbCCL")` <br>
+--> a3b3C2L<br>
+`stringCompression("aaabbbCCLL")`<br>
+--> a3b3C2L2<br>
+`stringCompression("abceeaaaddbbb")` <br>
+--> abce2a3d2b3<br>
+`stringCompression("aaabbbaaaaccaaaaba")` <br>
+--> a3b3a4c2a4ba<br>
+`stringCompression("a")`<br>
+--> a<br>
 
 ## 解き方
-Two pointer<br>
+** Two pointer **<br>
 2つのポインタ（インデックス）を利用して、データを走査する。具体的には、ポインタを動かしながら条件をチェックしていく。<br>
 ・始まりの文字(left)とそれに続く文字(right)をインデックスで管理するポインタを使って比較する<br>
 ・2つの文字が同じとき、固定していない方のポインタを移動する<br>
