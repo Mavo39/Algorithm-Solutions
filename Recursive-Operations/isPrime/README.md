@@ -5,21 +5,23 @@
 - **出力のデータ型**：`bool`  
 
 ## テストケース  
-`recursiveIsPrime(1)``--> false`<br>
-`recursiveIsPrime(2)``--> true`<br>
-`recursiveIsPrime(3)``--> true`<br>
-`recursiveIsPrime(4)``--> false`<br>
-`recursiveIsPrime(25)``--> false`<br>
-`recursiveIsPrime(29)``--> true`<br>
-`recursiveIsPrime(36)``--> false`<br>
-`recursiveIsPrime(45)``--> false`<br>
-`recursiveIsPrime(85)``--> false`<br>
-`recursiveIsPrime(455)``--> false`<br>
+`recursiveIsPrime(1)--> false`<br>
+`recursiveIsPrime(2)--> true`<br>
+`recursiveIsPrime(3)--> true`<br>
+`recursiveIsPrime(4)--> false`<br>
+`recursiveIsPrime(25)--> false`<br>
+`recursiveIsPrime(29)--> true`<br>
+`recursiveIsPrime(36)--> false`<br>
+`recursiveIsPrime(45)--> false`<br>
+`recursiveIsPrime(85)--> false`<br>
+`recursiveIsPrime(455)--> false`<br>
 
 ## 解き方
 素数は2以上を確かめていく<br>
 ・n だけでは情報が足りないため、補助関数を使って引数に2以降の数字を追跡する変数を追加し、数字を順番に検証していく。<br>
-・ベースケース：①i の2乗が n を超えたとき ②n が i で割り切れたとき<br>
+・ベースケース：<br>
+①i の2乗が n を超えたとき<br>
+②n が i で割り切れたとき<br>
 ・再帰ケース：i に1を加え、再帰処理<br>
 
 
