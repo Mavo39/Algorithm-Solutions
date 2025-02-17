@@ -6,7 +6,7 @@ function recursiveDigitsAdded(int $digits): int{
     if($total < 10){
         return $total;
     }
-    return $total + recursiveDigitsAdded($total, $total);
+    return $total + recursiveDigitsAdded($total);
 }
 
 // 全桁の数字を合計する関数
