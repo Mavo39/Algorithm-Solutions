@@ -2,22 +2,22 @@
 目的：配列にオブジェクトを格納すること<br>
 
 ## データ型
-`String suit`: カードの記号（♣, ♦, ♥, ♠）を表す
-`String value`: カードの値（A,2, ... ,K）
-`String intValue`: カードの数値（1 ~ 13）
+`String suit`: カードの記号（♣, ♦, ♥, ♠）を表す<br>
+`String value`: カードの値（A,2, ... ,K）<br>
+`String intValue`: カードの数値（1 ~ 13）<br>
 
 ## テストケース
-`cards = [];`
-`cards.push(new Card("♣", "A", "1"))`
-`cards.push(new Card("♦", "K", "13"))`
-`cards.push(new Card("♥", "Q", "12"))`
-`cards.push(new Card("♠", "J", "11"))`
+`cards = [];`<br>
+`cards.push(new Card("♣", "A", "1"))`<br>
+`cards.push(new Card("♦", "K", "13"))`<br>
+`cards.push(new Card("♥", "Q", "12"))`<br>
+`cards.push(new Card("♠", "J", "11"))`<br>
 
-`printCardArray(cards)`
-`--> ♣A(1)`
-`--> ♦K(13)`
-`--> ♥Q(12)`
-`--> ♠J(11)`
+`printCardArray(cards)`<br>
+`--> ♣A(1)`<br>
+`--> ♦K(13)`<br>
+`--> ♥Q(12)`<br>
+`--> ♠J(11)`<br>
 
 ## 解き方
 ・クラスを実装する<br>
