@@ -67,28 +67,28 @@ PHP<br>
 → 該当するようにするためには、既に値が存在する場合には `false` を返すように設定する必要がある<br>
 (前)<br>
 ```
-    for($i = 0; $i < strlen($user1); $i++){<br>
-        if(!isset($hashmap[$user1[$i]]) && !in_array($user2[$i], array_values($hashmap))){<br>
-            $hashmap[$user1[$i]] = $user2[$i];<br>
-        }<br>
-        else if(isset($hashmap[$user1[$i]]) && $hashmap[$user1[$i]] !== $user2[$i]){<br>
-            return false;<br>
-        }<br>
-    }<br>
+    for($i = 0; $i < strlen($user1); $i++){
+        if(!isset($hashmap[$user1[$i]]) && !in_array($user2[$i], array_values($hashmap))){
+            $hashmap[$user1[$i]] = $user2[$i];
+        }
+        else if(isset($hashmap[$user1[$i]]) && $hashmap[$user1[$i]] !== $user2[$i]){
+            return false;
+        }
+    }
 ```
 (後)<br>
 ```
-    for($i = 0; $i < strlen($user1); $i++){<br>
-        if(!isset($hashmap[$user1[$i]])){<br>
-            if(in_array($user2[$i], array_values($hashmap))){<br>
-                return false;<br>
-            }<br>
-            $hashmap[$user1[$i]] = $user2[$i];<br>
-        }<br>
-        else if(isset($hashmap[$user1[$i]]) && $hashmap[$user1[$i]] !== $user2[$i]){<br>
-            return false;<br>
-        }<br>
-    }<br>
+    for($i = 0; $i < strlen($user1); $i++){
+        if(!isset($hashmap[$user1[$i]])){
+            if(in_array($user2[$i], array_values($hashmap))){
+                return false;
+            }
+            $hashmap[$user1[$i]] = $user2[$i];
+        }
+        else if(isset($hashmap[$user1[$i]]) && $hashmap[$user1[$i]] !== $user2[$i]){
+            return false;
+        }
+    }
 ```
 ## 気づき
 ・「既に値が存在するとき」を`false`に判定していないのが期待通りに出力しない原因だと自力で気づくことができたこと<br>
