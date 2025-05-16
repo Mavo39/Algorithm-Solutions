@@ -5,7 +5,10 @@ function hasSameType(string $user1, string $user2): bool{
 
     $hashmap = [];
     for($i = 0; $i < strlen($user1); $i++){
-        if(!isset($hashmap[$user1[$i]]) && !in_array($user2[$i], array_values($hashmap))){
+        if(!isset($hashmap[$user1[$i]])){
+            if(in_array($user2[$i], array_values($hashmap))){
+                return false;
+            }
             $hashmap[$user1[$i]] = $user2[$i];
         }
         else if(isset($hashmap[$user1[$i]]) && $hashmap[$user1[$i]] !== $user2[$i]){
