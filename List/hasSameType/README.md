@@ -66,6 +66,7 @@ PHP<br>
 → 従来のコードでは、$user1の'l'を検証するときに、いずれの if 文にも該当せず、処理が終了してしまう<br>
 → 該当するようにするためには、既に値が存在する場合には `false` を返すように設定する必要がある<br>
 (前)<br>
+```
     for($i = 0; $i < strlen($user1); $i++){<br>
         if(!isset($hashmap[$user1[$i]]) && !in_array($user2[$i], array_values($hashmap))){<br>
             $hashmap[$user1[$i]] = $user2[$i];<br>
@@ -74,7 +75,9 @@ PHP<br>
             return false;<br>
         }<br>
     }<br>
+```
 (後)<br>
+```
     for($i = 0; $i < strlen($user1); $i++){<br>
         if(!isset($hashmap[$user1[$i]])){<br>
             if(in_array($user2[$i], array_values($hashmap))){<br>
@@ -86,7 +89,7 @@ PHP<br>
             return false;<br>
         }<br>
     }<br>
-
+```
 ## 気づき
 ・「既に値が存在するとき」を`false`に判定していないのが期待通りに出力しない原因だと自力で気づくことができたこと<br>
 → `false` を返すように設定すればいいと考えた<br>
