@@ -9,7 +9,7 @@ function mergeSortHelper(arr, startIndex, endIndex){
         return [element];
     }
 
-    midIndex = Math.floor((startIndex + endIndex) / 2);
+    let midIndex = Math.floor((startIndex + endIndex) / 2);
     let leftArr = mergeSortHelper(arr, startIndex, midIndex);
     let rightArr = mergeSortHelper(arr, midIndex+1, endIndex);
 
