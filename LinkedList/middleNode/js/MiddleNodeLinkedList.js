@@ -2,8 +2,8 @@ import { Node } from '../../Common/js/Node.js';
 import { SinglyLinkedList } from '../../Common/js/SinglyLinkedList.js';
 
 export class MiddleNodeLinkedList extends SinglyLinkedList {
-    middleNode(list){
-        let iterator = list.head;
+    middleNode(){
+        let iterator = this.head;
         let count = 0;
         
         while(iterator !== null){
@@ -24,7 +24,7 @@ export class MiddleNodeLinkedList extends SinglyLinkedList {
     // オーバーライド
     printList(node){
         let iterator = node;
-        str = '';
+        let str = '';
 
         while(iterator.next !== null){
             str += iterator.data + '➡';
@@ -35,3 +35,16 @@ export class MiddleNodeLinkedList extends SinglyLinkedList {
         console.log(str);
     }
 }
+
+// fast-slow(他の方のコードからの学び)
+// middleNode(){
+//     let slow = this.head; // 通常の速度で進む
+//     let fast = this.head; // 2倍の速度で進む
+
+//     while (fast != null && fast.next != null) {
+//         fast = fast.next.next;   // 次の次のノードへ
+//         slow = slow.next;        // 次のノードへ
+//     }
+
+//     return slow;
+// }
