@@ -1,6 +1,6 @@
 <?php 
 
-require_once './Node.php';
+require_once '../../Common/php/Node.php';
 
 class SinglyLinkedList {
     public ?Node $head;

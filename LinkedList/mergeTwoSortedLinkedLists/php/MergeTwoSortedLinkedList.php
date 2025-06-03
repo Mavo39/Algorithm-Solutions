@@ -4,21 +4,45 @@ require_once '../../Common/php/Node.php';
 require_once '../../Common/php/SinglyLinkedList.php';
 
 class MergeTwoSortedLinkedList extends SinglyLinkedList {
-    public function mergeTwoSortedLinkedList(SinglyLinkedList $head1, SinglyLinkedList $head2): Node{
-        $iterator1 = $head1;
-        $iterator2 = $head2;
+    public function mergeTwoSortedLinkedList(SinglyLinkedList $list1, SinglyLinkedList $list2): ?Node{
+        $iterator1 = $list1->head;
+        $iterator2 = $list2->head;
 
-        $head = new Node(null);
+        $dummyNode = new Node(0);
+        $iterator = $dummyNode;
 
-        while($iterator1->next !== null || $iterator2->next){
+        while(true){
+            if($iterator1 === null){
+                $iterator->next = $iterator2;
+                break;
+            }
+
+            if($iterator2 === null){
+                $iterator->next = $iterator1;
+                break;
+            }
+
             if($iterator1->data <= $iterator2->data){
-                $head = $iterator2->data;
-                $iterator2 = $iterator2->next;
+                $iterator->next = $iterator1;
+                $iterator1 = $iterator->next;
             } else {
-                $head = $iterator1->data;
-                $iterator1 = $iterator1->next;
+                $iterator->next = $iterator2;
+                $iterator2 = $iterator2->next;
             }
         }
-        return $head;
+        return $dummyNode->next;
+    }
+
+    public function print(?Node $node): void{
+        $iterator = $node;
+        $str = '';
+
+        while($iterator->next !== null){
+            $str .= $iterator->data . '➡';
+            $iterator = $iterator->next;
+        }
+        $str .= $iterator->data;
+
+        echo $str . PHP_EOL;
     }
 }
