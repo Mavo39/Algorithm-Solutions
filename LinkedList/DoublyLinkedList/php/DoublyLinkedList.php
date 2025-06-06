@@ -17,8 +17,9 @@ class DoublyLinkedList {
         $currentNode = $this->head;
 
         for($i = 1; $i < count($arr); $i++){
-            $currentNode->next = new Item($arr[$i]);
-            $currentNode->next->prev = $currentNode;
+            $newNode = new Item($arr[$i]);
+            $currentNode->next = $newNode;
+            $newNode->prev = $currentNode;
             $currentNode = $currentNode->next;
         }
         $this->tail = $currentNode;
