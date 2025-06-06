@@ -46,15 +46,43 @@ DoublyLinkedListを正しく設計し、テストケースを出力すること
 
 
 ## 悩んだ箇所
-
+特になかった
 
 
 ## 直面したエラーと解決策
 **エラー①**
+エラーはなかった
 
 
 ## 気づき
-
+・コミットするタイミングを本番を想定してこまめにするようにしたこと  
+(これまで)問題が完了し、リモートにプッシュできる状態になってからコミットしていた  
+(これから)1つの目的が達成できた段階でコミットする  
+(理由)コミットはその瞬間のスナップショット。こまめに変更を加えた方が、後から前のコミット（履歴）に遡りやすいとわかったため  
+→ チームメンバーと共有することを考えると、どのタイミングでエラーが発生したのかを明確にしやすくするためにも、今後コミットのタイミングを改善していく  
 
 ## 改善点・フィードバック
+① DoublyLinkedListクラスのコンストラクタ内の if 文の可読性
+```php
+    // 改善前
+    $this->head = new Item(0);
+    $this->tail = $this->head;
 
+    // 改善後
+    $this->head = null;
+    $this->tail = null;
+```
+
+② DoublyLinkedListクラスのコンストラクタ内のループ処理時における変数の可読性  
+```php
+    // 改善前
+    $currentNode->next = new Item($arr[$i]);
+    $currentNode->next->prev = $currentNode;
+    $currentNode = $currentNode->next;
+        
+    // 改善後
+    $newNode = new Item($arr[$i]);
+    $currentNode->next = $newNode;
+    $newNode->prev = $currentNode;
+    $currentNode = $newNode;
+```
