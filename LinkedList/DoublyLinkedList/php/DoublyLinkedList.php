@@ -8,8 +8,8 @@ class DoublyLinkedList {
 
     public function __construct(array $arr){
         if(count($arr) <= 0){
-            $this->head = new Item(0);
-            $this->tail = $this->head;
+            $this->head = null;
+            $this->tail = null;
             return;
         }
 
