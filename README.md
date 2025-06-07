@@ -17,3 +17,9 @@ Algorithm-Solutions/
 │            ├── javascript/ # JavaScriptの解答
 │            ├── php/       # PHPの解答
 │            ├── java/      # Javaの解答
+```
+
+## 学習記録の管理
+日々の学習記録は以下にまとめています。
+[./progress/README.md](./progress/README.md)
+※ 解いた日付・問題名・該当ディレクトリへのリンクを一覧で管理しています。
