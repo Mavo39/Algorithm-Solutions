@@ -1,5 +1,7 @@
 <?php 
 
+namespace Common;
+
 class Node {
     public int $data;
     public ?Node $next;
