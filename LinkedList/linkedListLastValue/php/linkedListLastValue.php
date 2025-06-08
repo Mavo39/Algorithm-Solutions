@@ -1,7 +1,8 @@
 <?php 
 
+use Common\Node;
+
 require_once '../../Common/php/Node.php';
-require_once '../../Common/php/SinglyLinkedList.php';
 
 function linkedListLastValue(?Node $head): int{
     if($head === null) return 0;
