@@ -1,5 +1,7 @@
 <?php 
 
+namespace Common;
+
 require_once '../../Common/php/Node.php';
 
 class SinglyLinkedList {
