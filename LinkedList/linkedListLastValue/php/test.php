@@ -1,6 +1,5 @@
 <?php
 
-use Common\Node;
 use Common\SinglyLinkedList;
 
 require_once '../../Common/php/Node.php';
