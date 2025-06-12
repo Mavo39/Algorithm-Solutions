@@ -20,5 +20,9 @@ function insertAtPosition(?Node $head, int $position, int $data): ?Node{
         $index++;
     }
 
+    if($index !== $position){
+        return $head;
+    }
+
     return $head;
 }
