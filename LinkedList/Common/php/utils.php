@@ -21,4 +21,22 @@ function printListFromNode(?Node $node): void{
 
     echo $str . PHP_EOL;
 }
+
+// テスト用
+function stringifyListFromNode(?Node $node): string{
+    if ($node === null) return "null";
+
+    $str = "";
+    $current = $node;
+
+    while ($current !== null) {
+        $str .= $current->data;
+        if ($current->next !== null) {
+            $str .= "➡";
+        }
+        $current = $current->next;
+    }
+
+    return $str;
+}
  
