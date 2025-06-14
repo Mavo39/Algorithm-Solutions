@@ -63,7 +63,12 @@ next はデフォルトでは null を設定
 
 
 ## 【直面したエラーと解決策】
-
+**エラー①**  
+```sh
+if(newNode.data < currentNode.data){
+                ^
+TypeError: Cannot read properties of undefined (reading 'data')
+```
 
 ## 【気づき】
 
