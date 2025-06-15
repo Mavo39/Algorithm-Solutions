@@ -1,32 +1,20 @@
 import { Node } from '../../Common/js/Node.js';
 
 export function insertNodeInSorted(head,data){
-    if(head === null) return null;
-
     const newNode = new Node(data);
+
+    if(head === null || data < head.data){
+        newNode.next = head;
+        return newNode;
+    }
+
     let currentNode = head;
-
-    while(currentNode !== null){
-        if(newNode.data < currentNode.data){
-            head = newNode;
-            newNode.next = currentNode;
-            break;
-        }
-
-        if (currentNode.data <= newNode.data && newNode.data <= currentNode.next.data){
-            const temp = currentNode.next;
-            currentNode.next = newNode;
-            newNode.next = temp;
-            break;
-        }
-        
-        if(currentNode.data <= newNode.data && currentNode.next === null){
-            currentNode.next = newNode;
-            newNode.next = null;
-        } 
-
+    while(currentNode.next !== null && currentNode.next.data < data){
         currentNode = currentNode.next;
     }
+
+    newNode.next = currentNode.next;
+    currentNode.next = newNode;
 
     return head;
 }
