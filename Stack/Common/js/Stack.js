@@ -1,6 +1,6 @@
 import { Item } from './Item.js';
 
-class Stack {
+export class Stack {
     constructor(){
         this.head = null;
     }
