@@ -9,7 +9,7 @@ export function reverse(arr){
     }
 
     let newArr = [];
-    for(let i = 0; i < stack.length; i++){
+    for(let i = 0; i < arr.length; i++){
         newArr.push(stack.pop());
     }
 
