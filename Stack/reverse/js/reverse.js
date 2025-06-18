@@ -4,12 +4,12 @@ export function reverse(arr){
     if(arr.length === 0) return [];
 
     let stack = new Stack();
-    for(let i = 0; i < arr.length; i++){
-        stack.push(arr[i]);
+    for(const ele of arr){
+        stack.push(ele);
     }
 
     let newArr = [];
-    for(let i = 0; i < arr.length; i++){
+    while(stack.peek() !== null){
         newArr.push(stack.pop());
     }
 
