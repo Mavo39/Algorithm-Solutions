@@ -19,7 +19,7 @@ function consecutiveWalk(array $arr): array{
 
     $newArr = [];
     while($stack->peek() !== null){
-        array_unshift($newArr, $stack->pop());
+        array_push($newArr, $stack->pop());
     }
 
     return $newArr;
