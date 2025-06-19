@@ -1,7 +1,7 @@
 <?php 
 
-require_once './Item.php';
-require_once './Stack.php';
+require_once '../../Common/php/Item.php';
+require_once '../../Common/php/Stack.php';
 
 $s1 = new Stack();
 $s1->push(2);
