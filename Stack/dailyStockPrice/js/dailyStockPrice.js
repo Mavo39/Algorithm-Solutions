@@ -1,6 +1,4 @@
 export function dailyStockPrice(stocks){
-    if(stocks.length === 0) return [];
-
     let stack = [];
     let resArr = [];
 
