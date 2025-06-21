@@ -2,7 +2,7 @@
 
 namespace Common;
 
-require_once '../../Common/php/Node.php';
+require_once __DIR__ . '/Node.php';
 
 class SinglyLinkedList {
     public ?Node $head;

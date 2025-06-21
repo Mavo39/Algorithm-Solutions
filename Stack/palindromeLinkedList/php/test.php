@@ -1,7 +1,7 @@
 <?php 
 
-require_once __DIR__ . '/../../../LinkedList/Common/php/SinglyLinkedList.php';
-require_once './palindromeLinkedList.php';
+require_once __DIR__ . '/../LinkedList/Common/PHP/Node.php';
+require_once __DIR__ . '/../LinkedList/Common/PHP/SinglyLinkedList.php';
 
 use Common\SinglyLinkedList;
 
