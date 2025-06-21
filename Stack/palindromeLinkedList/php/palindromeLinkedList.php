@@ -1,6 +1,6 @@
 <?php 
 
-require_once __DIR__ . '/../LinkedList/Common/PHP/Node.php';
+require_once __DIR__ . '/../../../LinkedList/Common/php/SinglyLinkedList.php';
 
 use Common\Node;
 

@@ -1,6 +1,7 @@
 <?php 
 
 require_once __DIR__ . '/../../../LinkedList/Common/php/SinglyLinkedList.php';
+require_once __DIR__ . '/palindromeLinkedList.php';
 
 use Common\SinglyLinkedList;
 
