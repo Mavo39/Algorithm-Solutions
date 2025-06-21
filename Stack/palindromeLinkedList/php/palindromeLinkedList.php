@@ -5,10 +5,13 @@ require_once __DIR__ . '/../../../LinkedList/Common/php/SinglyLinkedList.php';
 use Common\Node;
 
 function palindromeLinkedList(?Node $head): bool{
+    if($head->next === null) return true;
+
     $currentNode = $head;
     $stack = [];
+    
     while($currentNode !== null){
-        array_push($stack, $currentNode->data);
+        $stack[] = $currentNode->data;
         $currentNode = $currentNode->next;
     }
 
