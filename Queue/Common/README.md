@@ -53,16 +53,61 @@ Queueクラスを正しく実装すること
 
 
 #### ◾️検証  
-  
+仮説に基づき実装し、期待通りの結果が得られた    
 
 ## 【悩んだ箇所】
- 
+- import/export が使えなかったこと  
+ES ModuleとCommonJSは実行環境の違いということ  
+
 
 ## 【直面したエラーと解決策】
+**エラー①**  
+【エラーメッセージ】  
+```sh
+(node:74503) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
+(Use `node --trace-warnings ...` to show where the warning was created)
+/~/algorithm-solutions/Queue/Common/js/Queue.test.js:1
+import { Queue } from './Queue.js';
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+```
+
+【意味・解説】  
+.js ファイル内の import 文が 「モジュールとして認識されていない環境で使われた」ため文法エラーになった
   
+Node.jsは import / export のようなESモジュール構文を処理するために、  
+・package.json に "type": "module" があるか  
+・ファイルの拡張子が .mjs である必要がある  
+というルールがある。  
+どちらも満たしていない場合、Node.jsは .js ファイルを CommonJSモジュール として扱うため、ESモジュール構文を使うとエラーになる。  
+
+Queue.test.js で import を使っているけど、Node.jsはこれをCommonJSとして解釈しようとしている
+だから import は使えず、文法エラーが出ている
+ESモジュールとして認識させる設定がされていない
+
+【解決プロセス】
+- メッセージの意味をChatGPTに日本語訳してもらう
+- CommonJSとESモジュールのことを質問する
+- 意味を理解し、テストを実装することが目的であるため、今回はCommonJSを使って実装
+
+【解決策】
+- ESモジュールに統一する
+または
+- CommonJSにする
 
 ## 【気づき】
-
+- これまで意味をしっかり理解せずに`module.exports`や`import`などを使っていると気づいた  
+- テストケースを実装したファイル名には関数名などをつけ、どの関数・クラスのテストケースかをわかるように命名する必要があること  
 
 ## 【フィードバック・改善点】
+- dequeueメソッドでtailの更新が必要
+```js
+// 改善前
+if(this.head === null) return null;
 
+// 改善後
+if(this.head === null){
+    this.tail = null;
+}
+```
