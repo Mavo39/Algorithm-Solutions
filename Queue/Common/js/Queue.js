@@ -34,7 +34,10 @@ class Queue {
 
         const temp = this.head;
         this.head = this.head.next;
-        if(this.head === null) return null;
+
+        if(this.head === null){
+            this.tail = null;    
+        }
 
         return temp.data;
     }
