@@ -1,6 +1,6 @@
-import { Node } from './Node.js';
+const  Node = require('./Node.js');
 
-export class Queue {
+class Queue {
     constructor(){
         this.head = null;
         this.tail = null;
@@ -39,3 +39,5 @@ export class Queue {
         return temp.data;
     }
 }
+
+module.exports = Queue;
