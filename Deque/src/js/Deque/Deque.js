@@ -24,11 +24,11 @@ class Deque {
 
     enqueueFront(data){
         if(this.head === null){
-            this.head = new Item(data);
+            this.head = new Node(data);
             this.tail = this.head;
         }
         else {
-            let newHeadNode = new Item(data);
+            let newHeadNode = new Node(data);
             newHeadNode.next = this.head;
             this.head.prev = newHeadNode;
             this.head = newHeadNode;
@@ -37,11 +37,11 @@ class Deque {
 
     enqueueBack(data){
         if(this.tail === null){
-            this.tail = new Item(data);
+            this.tail = new Node(data);
             this.head = this.tail;
         }
         else {
-            let newTailNode = new Item(data);
+            let newTailNode = new Node(data);
             newTailNode.prev = this.tail;
             this.tail.next = newTailNode;
             this.tail = newTailNode;
