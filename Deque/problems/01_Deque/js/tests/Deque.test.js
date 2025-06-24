@@ -12,9 +12,9 @@ let q = new Deque();
 q.enqueueBack(4);
 q.enqueueBack(50);
 testDequeOutput(4, q.peekFront());
-testDequeOutput(50, q.peekFront());
-q.enqueueFront(36)
-q.enqueueFront(96)
+testDequeOutput(50, q.peekBack());
+q.enqueueFront(36);
+q.enqueueFront(96);
 testDequeOutput(96, q.peekFront());
 testDequeOutput(50, q.peekBack());
 testDequeOutput(50, q.dequeueBack());
