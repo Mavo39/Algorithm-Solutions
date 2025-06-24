@@ -57,7 +57,8 @@ class Deque {
         this.head = this.head.next;
         if(this.head === null){
             this.tail = null;
-            return null;
+        } else {
+            this.head.prev = null;
         }
 
         return temp.data;
@@ -72,7 +73,8 @@ class Deque {
         this.tail = this.tail.prev;
         if(this.tail === null){
             this.head = null;
-            return null;
+        } else {
+            this.tail.next = null;
         }
 
         return temp.data;
