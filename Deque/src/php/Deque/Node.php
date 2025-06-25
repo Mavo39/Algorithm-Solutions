@@ -2,11 +2,11 @@
 
 class Node 
 {
-    public $data;
-    public $prev;
-    public $next;
+    public int $data;
+    public ?Node $prev;
+    public ?Node $next;
 
-    public function __construct($data)
+    public function __construct(int $data)
     {
         $this->data = $data;
         $this->prev = null;
