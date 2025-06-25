@@ -1,6 +1,6 @@
 <?php 
 
-require_once './Node.php';
+require_once __DIR__ . '/Node.php';
 
 class Deque
 {
