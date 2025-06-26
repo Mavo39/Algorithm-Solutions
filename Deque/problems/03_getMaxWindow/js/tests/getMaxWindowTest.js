@@ -4,7 +4,7 @@ const getMaxWindow = require('../src/getMaxWindow.js');
 function getMaxWindowTest(arr, k, expected){
     const resArr = getMaxWindow(arr, k);
 
-    if(expected === resArr){
+    if(JSON.stringify(expected) === JSON.stringify(resArr)){
         console.log("True");
     } else {
         console.log("False");
