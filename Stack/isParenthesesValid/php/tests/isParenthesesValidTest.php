@@ -2,39 +2,32 @@
 
 require_once __DIR__ . '/../src/isParenthesesValid.php';
 
-# isParenthesesValidが正しく動作するか確認する関数
-function isParenthesesValidTest(string $parentheses, bool $expected): void{
-    $output = isParenthesesValid($parentheses);
-
-    echo $output === $expected ? "true" : "false";
-}
-
 // 1.
-isParenthesesValidTest("{}", true);
+echo json_encode(isParenthesesValid("{}")) . PHP_EOL;
 
 // 2.
-isParenthesesValidTest("[{}]", true);
+echo json_encode(isParenthesesValid("[{}]")) . PHP_EOL;
 
 // 3.
-isParenthesesValidTest("[{(]", false);
+echo json_encode(isParenthesesValid("[{(]")) . PHP_EOL;
 
 // 4.
-isParenthesesValidTest("(){}[]", true);
+echo json_encode(isParenthesesValid("(){}[]")) . PHP_EOL;
 
 // 5.
-isParenthesesValidTest("((()(())))", true);
+echo json_encode(isParenthesesValid("((()(())))")) . PHP_EOL;
 
 // 6.
-isParenthesesValidTest("[{(}])", false);
+echo json_encode(isParenthesesValid("[{(}])")) . PHP_EOL;
 
 // 7.
-isParenthesesValidTest("]][}{({()){}(", false);
+echo json_encode(isParenthesesValid("]][}{({()){}(")) . PHP_EOL;
 
 // 8.
-isParenthesesValidTest("{(([])[])[]}[]", true);
+echo json_encode(isParenthesesValid("{(([])[])[]}[]")) . PHP_EOL;
 
 // 9.
-isParenthesesValidTest("{(([])[])[]]}", false);
+echo json_encode(isParenthesesValid("{(([])[])[]]}")) . PHP_EOL;
 
 // 10.
-isParenthesesValidTest("{{[[(())]]}}", true);
+echo json_encode(isParenthesesValid("{{[[(())]]}}")) . PHP_EOL;
