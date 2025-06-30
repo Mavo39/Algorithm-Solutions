@@ -5,3 +5,5 @@ class BinaryTree {
         this.right = null;
     }
 }
+
+module.exports = BinaryTree;
