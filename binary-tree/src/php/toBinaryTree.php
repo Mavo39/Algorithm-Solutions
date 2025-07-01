@@ -7,7 +7,7 @@ function toBinaryTree(array $intArr): ?BinaryTree
     if(empty($intArr) || $intArr[0] === null) return null;
 
     $root = new BinaryTree($intArr[0]);
-    $queue[] = $root;
+    $queue = [$root];
     $i = 1;
 
     while($i < count($intArr)){
