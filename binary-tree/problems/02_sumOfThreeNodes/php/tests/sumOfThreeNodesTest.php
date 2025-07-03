@@ -10,7 +10,7 @@ function sumOfThreeNodesTest(?BinaryTree $root, int $expected, int $testNumber):
     if($res === $expected){
         echo "test case $testNumber: pass" . PHP_EOL;
     } else {
-        echo "test case $testNumber: fail" . PHP_EOL;
+        echo "test case $testNumber: fail (expected $expected, got $res)" . PHP_EOL;
     }
 }
 
