@@ -20,6 +20,7 @@ class BinarySearchTree
             if($iterator->data === $key){
                 return $iterator;
             }
+
             if($iterator->data > $key){
                 $iterator = $iterator->left;
             } else {
@@ -30,8 +31,21 @@ class BinarySearchTree
         return null;
     }
 
-    public function exists(int $key): bool
+    public function keyExists(int $key): bool
     {
+        $iterator = $this->root;
+        while($iterator !== null){
+            if($iterator->data === $key){
+                return true;
+            }
 
+            if($iterator->data > $key){
+                $iterator = $iterator->left;
+            } else {
+                $iterator = $iterator->right;
+            }
+        }
+
+        return false;
     }
 }
