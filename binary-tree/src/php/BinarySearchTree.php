@@ -10,7 +10,7 @@ class BinarySearchTree
     public function __construct(array $arr)
     {
         sort($arr);
-        $this->root = toBinaryTree($arr);
+        $this->root = BinarySearchTree::sortedArrayToBSTHelper($arr, 0, count($arr)-1);
     }
 
     public function search(int $key): ?BinaryTree
@@ -56,12 +56,12 @@ class BinarySearchTree
         $mid = floor(($start + $end) / 2);
 
         $left = null;
-        if($start <= $mid - 1){
+        if($start <= $mid-1){
             $left = BinarySearchTree::sortedArrayToBSTHelper($arr, $start, $mid - 1);
         }
 
         $right = null;
-        if($mid + 1 <= $end){
+        if($mid+1 <= $end){
             $right = BinarySearchTree::sortedArrayToBSTHelper($arr, $mid + 1, $end);
         }
 
