@@ -48,4 +48,25 @@ class BinarySearchTree
 
         return false;
     }
+
+    public static function sortedArrayToBSTHelper(array $arr, int $start, int $end): ?BinaryTree
+    {
+        if($start === $end) return new BinaryTree($arr[$start]);
+
+        $mid = floor(($start + $end) / 2);
+
+        $left = null;
+        if($start <= $mid - 1){
+            $left = BinarySearchTree::sortedArrayToBSTHelper($arr, $start, $mid - 1);
+        }
+
+        $right = null;
+        if($mid + 1 <= $end){
+            $right = BinarySearchTree::sortedArrayToBSTHelper($arr, $mid + 1, $end);
+        }
+
+        $root = new BinaryTree($arr[$mid], $left, $right);
+        
+        return $root;
+    }
 }
