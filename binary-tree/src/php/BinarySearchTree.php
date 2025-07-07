@@ -10,7 +10,7 @@ class BinarySearchTree
     public function __construct(array $arr)
     {
         sort($arr);
-        $this->root = BinarySearchTree::sortedArrayToBSTHelper($arr, 0, count($arr)-1);
+        $this->root = self::sortedArrayToBSTHelper($arr, 0, count($arr)-1);
     }
 
     public function search(int $key): ?BinaryTree
@@ -33,20 +33,7 @@ class BinarySearchTree
 
     public function keyExists(int $key): bool
     {
-        $iterator = $this->root;
-        while($iterator !== null){
-            if($iterator->data === $key){
-                return true;
-            }
-
-            if($iterator->data > $key){
-                $iterator = $iterator->left;
-            } else {
-                $iterator = $iterator->right;
-            }
-        }
-
-        return false;
+        return $this->search($key) !== null;
     }
 
     public static function sortedArrayToBSTHelper(array $arr, int $start, int $end): ?BinaryTree
@@ -57,12 +44,12 @@ class BinarySearchTree
 
         $left = null;
         if($start <= $mid-1){
-            $left = BinarySearchTree::sortedArrayToBSTHelper($arr, $start, $mid - 1);
+            $left = self::sortedArrayToBSTHelper($arr, $start, $mid - 1);
         }
 
         $right = null;
         if($mid+1 <= $end){
-            $right = BinarySearchTree::sortedArrayToBSTHelper($arr, $mid + 1, $end);
+            $right = self::sortedArrayToBSTHelper($arr, $mid + 1, $end);
         }
 
         $root = new BinaryTree($arr[$mid], $left, $right);
