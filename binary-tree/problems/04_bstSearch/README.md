@@ -4,24 +4,34 @@
 
 ## 問題概要 
 **目的**  
-
+BSTの特性を利用して、効率的に key を探索すること
 
 ## 入出力仕様
- 
+**入力**: `binaryTree<integer> root, integer key`  
+**出力**: `binaryTree<integer>`  
 
 ## 要件と制約
 ### 要件
-
+1. 二分探索木（BST）の探索
+2. BSTの性質を利用する
+3. 再帰または反復的なアプローチ
 
 ### 制約
-
+1. 入力のBSTが正しい形式であること
+2. ノードの値の範囲
+3. 返り値の形式
+- ノードが見つかった場合、そのノードを部分木のルートとして返すため、配列形式で子ノードも含めて返されます（例: [3,2,4]）
+- ノードが見つからない場合は、null または空配列 [] を返します（言語や実装によります）
 
 ## テストケース
-
-
+`bstSearch(toBinaryTree([0,-10,5,null,-3,null,9]), 5)--> [5,null,9]`  
+`bstSearch(toBinaryTree([0,-10,5,null,-3,null,9]), 20)--> []`  
+`bstSearch(toBinaryTree([5,3,6,2,4,null,7]), 3)--> [3,2,4]`  
+`bstSearch(toBinaryTree([5,3,6,2,4,null,7]), 5)--> [5,3,6,2,4,null,7]`   
+`bstSearch(toBinaryTree([5,3,6,2,4,null,7]), 15)--> []`  
 
 ## アプローチ
-  
+
 
 ## 実装方針
 
