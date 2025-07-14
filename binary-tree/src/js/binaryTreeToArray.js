@@ -29,3 +29,5 @@ function binarySubtreeToArray(root){
         
     return result;
 }
+
+module.exports = binarySubtreeToArray;
