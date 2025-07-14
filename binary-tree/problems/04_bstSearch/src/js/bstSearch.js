@@ -1,15 +1,15 @@
 function bstSearch(root,key){
-    let iterator = root;
+    let currentNode = root;
 
-    while(iterator !== null){
-        if(iterator.data === key){
-            return iterator;
+    while(currentNode !== null){
+        if(currentNode.data === key){
+            return currentNode;
         }
 
-        if(iterator.data > key){
-            iterator = iterator.left;
+        if(currentNode.data > key){
+            currentNode = currentNode.left;
         } else {
-            iterator = iterator.right;
+            currentNode = currentNode.right;
         }
     }
 
