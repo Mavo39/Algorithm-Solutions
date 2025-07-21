@@ -22,7 +22,7 @@ BSTの特性を利用して、効率的に最小値のノードを返すこと
 
 ## テストケース
 1. `minimumNode(toBinaryTree([null]))--> []`  
-2. `minimumNode(toBinaryTree([0,-10,5,null,-3,null,9]), 20)--> [-10,null,-3]`  
+2. `minimumNode(toBinaryTree([0,-10,5,null,-3,null,9]))--> [-10,null,-3]`  
 3. `minimumNode(toBinaryTree([5,3,6,2,4,null,7]))--> [2]`  
 4. `minimumNode(toBinaryTree([-2,-17,8,-18,-11,3,19,null,null,null,-4,null,null,null,25]))--> [-18]`   
 5. `minimumNode(toBinaryTree([3,-3,13,-7,1,6,18,-10,-4,0,2,5,8,15,19]))--> [-10]`  
@@ -49,12 +49,16 @@ BSTの特性を利用して、効率的に最小値のノードを返すこと
 
 
 ## 悩んだ箇所
+- 悩んだ箇所は特になかった
 
 
 ## 直面したエラーと解決策
+- エラーはなかった
 
 
 ## 気づき
+- テストケース作成時に、`binarySubtreeToArray`関数が必要だとわかった
 
 
 ## フィードバック・改善点
+- 簡潔で可読性がいいとフィードバックを受けた

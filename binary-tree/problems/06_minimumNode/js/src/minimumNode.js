@@ -9,3 +9,5 @@ function minimumNode(root){
 
     return currentNode;
 }
+
+module.exports = minimumNode;
