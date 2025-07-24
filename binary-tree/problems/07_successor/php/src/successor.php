@@ -4,7 +4,11 @@ require_once __DIR__ . '/../../../../src/php/BinaryTree.php';
 
 function successor(?BinaryTree $root, int $key): ?BinaryTree
 {
+    $targetNode = findNode($root, $key);
+    if($targetNode == null) return null;
+    if($targetNode->right !== null) return minimumNode($root);
 
+    
 }
 
 function findNode(?BinaryTree $root, int $key): ?BinaryTree
