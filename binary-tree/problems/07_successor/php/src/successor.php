@@ -24,3 +24,14 @@ function findNode(?BinaryTree $root, int $key): ?BinaryTree
 
     return $currentNode;
 }
+
+function minimumNode(?BinaryTree $root): BinaryTree
+{
+    $currentNode = $root;
+    
+    while($currentNode !== null && $currentNode->left !== null){
+        $currentNode = $currentNode->left;
+    }
+
+    return $currentNode;
+}
