@@ -8,7 +8,23 @@ function successor(?BinaryTree $root, int $key): ?BinaryTree
     if($targetNode == null) return null;
     if($targetNode->right !== null) return minimumNode($root);
 
-    
+    $successor = null;
+    $currentNode = $root;
+
+    while($currentNode !== null){
+        if($targetNode->data === $currentNode->data){
+            return $successor;
+        }
+
+        if($targetNode->data < $currentNode->data){
+            $successor = $currentNode;
+            $currentNode = $currentNode->left;
+        } else {
+            $currentNode = $currentNode->right;
+        }
+    }
+
+    return $successor;
 }
 
 function findNode(?BinaryTree $root, int $key): ?BinaryTree
