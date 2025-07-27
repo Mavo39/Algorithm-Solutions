@@ -5,53 +5,51 @@ require_once __DIR__ . '/../../../../src/php/BinaryTree.php';
 function successor(?BinaryTree $root, int $key): ?BinaryTree
 {
     $targetNode = findNode($root, $key);
-    if($targetNode == null) return null;
-    if($targetNode->right !== null) return minimumNode($root);
-
+    if ($targetNode === null) return null;
+    if ($targetNode->right !== null) {
+        return minimumNode($targetNode->right);
+    }
+    
     $successor = null;
-    $currentNode = $root;
-
-    while($currentNode !== null){
-        if($targetNode->data === $currentNode->data){
-            return $successor;
-        }
-
-        if($targetNode->data < $currentNode->data){
-            $successor = $currentNode;
-            $currentNode = $currentNode->left;
+    $current = $root;
+    
+    while ($current !== null) {
+        if ($targetNode->data < $current->data) {
+            $successor = $current;
+            $current = $current->left;
+        } elseif ($targetNode->data > $current->data) {
+            $current = $current->right;
         } else {
-            $currentNode = $currentNode->right;
+            break;
         }
     }
-
+    
     return $successor;
 }
 
 function findNode(?BinaryTree $root, int $key): ?BinaryTree
 {
-    $currentNode = $root;
-
-    while($currentNode !== null){
-        if($currentNode->data === $key){
-            return $currentNode;
+    $current = $root;
+    
+    while ($current !== null) {
+        if ($key === $current->data) {
+            return $current;
         }
-        if($currentNode->data < $key){
-            $currentNode = $currentNode->left;
+        if ($key < $current->data) {
+            $current = $current->left;
         } else {
-            $currentNode = $currentNode->right;
+            $current = $current->right;
         }
     }
-
-    return $currentNode;
+    
+    return null;
 }
 
-function minimumNode(?BinaryTree $root): BinaryTree
+function minimumNode(BinaryTree $node): BinaryTree
 {
-    $currentNode = $root;
-    
-    while($currentNode !== null && $currentNode->left !== null){
-        $currentNode = $currentNode->left;
+    $current = $node;
+    while ($current->left !== null) {
+        $current = $current->left;
     }
-
-    return $currentNode;
+    return $current;
 }
