@@ -14,13 +14,15 @@ function successor(?BinaryTree $root, int $key): ?BinaryTree
     $current = $root;
     
     while ($current !== null) {
-        if ($targetNode->data < $current->data) {
+        if($targetNode->data == $current->data){
+            return $successor;
+        }
+
+        if($targetNode->data < $current->data){
             $successor = $current;
             $current = $current->left;
-        } elseif ($targetNode->data > $current->data) {
-            $current = $current->right;
         } else {
-            break;
+            $current = $current->right;
         }
     }
     
