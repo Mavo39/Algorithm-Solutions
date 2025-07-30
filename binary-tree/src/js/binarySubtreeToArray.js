@@ -1,26 +1,20 @@
 function binarySubtreeToArray(root){
-    if(root === null){
-        return [];
-    }
+    if(root === null) return [];
 
     const result = [];
     const queue = [root];
 
     while(queue.length > 0){
         const current = queue.shift();
-        result.push(current.data);
 
-        if(current.left !== null){
-            queue.push(current.left);
-        } else {
+        if(current === null){
             result.push(null);
+            continue;
         }
-        
-        if(current.right !== null){
-            queue.push(current.right);
-        } else {
-            result.push(null);
-        }
+
+        result.push(current.data);
+        queue.push(current.left);
+        queue.push(current.right);
     }
 
     while(result.length > 0 && result[result.length - 1] === null){
