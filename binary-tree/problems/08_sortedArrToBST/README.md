@@ -48,12 +48,66 @@
 
 ## 悩んだ箇所
 
+- 再帰処理を実装すること
+過去の問題を見返して、関数の呼び出しと戻りを紙に書いて、現在なんの処理をしているのかを整理して進めたことでコードに落とし込んだ
+
 
 ## 直面したエラーと解決策
 
+- 葉ノード以下に不要な`null`がついていたこと
+
+【原因】`binarySubtreeToArray`関数のロジックに一部誤りがあったこと  
+
+【解決策】whileループ内の処理ロジックを変更  
+
+```js
+// 変更前
+    while(queue.length > 0){
+        const current = queue.shift();
+        result.push(current.data);
+
+        if(current.left !== null){
+            queue.push(current.left);
+        } else {
+            result.push(null);
+        }
+        
+        if(current.right !== null){
+            queue.push(current.right);
+        } else {
+            result.push(null);
+        }
+    }
+
+// 変更後
+    while(queue.length > 0){
+        const current = queue.shift();
+
+        if(current === null){
+            result.push(null);
+            continue;
+        }
+
+        result.push(current.data);
+        queue.push(current.left);
+        queue.push(current.right);
+    }
+```
 
 ## 気づき
+
+- 過去に実装した二分木を配列として表示する`binarySubtreeToArray`関数のロジックを見返したときに、可読性が悪く、不要な記述がたくさんあることに気づいた
+今回、使用している中でロジックの不備に気づいたことがきっかけとなった
+- 定期的に過去に書いたロジックも見返すことで、どう変更すると可読性が良くなるのか、保守性はいいのか、といった観点をもって変更することができるとわかった
+- 何を繰り返すとどんな結果が期待できるか、という分割統治法と再帰の特性を生かして実装するときに必要な視点を整理することができた
 
 
 ## フィードバック・改善点
 
+- リストの中身がないときの書き方（任意）
+
+```js
+if (numberList.length === 0) return null;
+// ↓ より短く
+if (!numberList.length) return null;
+```
