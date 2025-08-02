@@ -8,12 +8,12 @@ function preorderTraversal(?BinaryTree $root): array
     return preorderTraversalHelper($root, $res);
 }
 
-function preorderTraversalHelper(?BinaryTree $tRoot, array &$arr): array
+function preorderTraversalHelper(?BinaryTree $node, array &$arr): array
 {
-    if($tRoot !== null){
-        $arr[] = $tRoot->data;
-        preorderTraversalHelper($tRoot->left, $arr);
-        preorderTraversalHelper($tRoot->right, $arr);
+    if($node !== null){
+        $arr[] = $node->data;
+        preorderTraversalHelper($node->left, $arr);
+        preorderTraversalHelper($node->right, $arr);
     }
 
     return $arr;
