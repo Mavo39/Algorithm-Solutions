@@ -61,12 +61,69 @@
 
 ### 検証
 
+仮説のとおり実装し、期待どおりテストケースの出力結果が得られた
 
 ## ふりかえり
 
+- 再帰関数の「戻り」の考え方にまだまだ慣れていないと実感した
+
+- 1関数1目的をできるだけ守り、再利用性を考える視点を今後も持ち続けていこうと思った
+
+- 関数を実装するときには、何を入力として受け取り、どんな処理を行ない、どんな結果が得られるのか、を常に意識するようにすること
 
 ## 直面したエラーと解決策
 
+- エラーや困った点はなかった
 
 ## フィードバック・改善点
 
+- 引数の名前
+rootは毎回変わるので、改善前の変数名は木全体のノードを意味してしまうようにも取れてしまう  
+→ 誤解を招く可能性がある
+
+```php
+// 改善前(命名意図: 木の根ノード)
+$tRoot
+
+// 改善後(命名意図: 処理しているノード)
+$node
+```
+
+- 補助関数で処理だけに専念する
+
+```php
+// 改善前
+function preorderTraversal(?BinaryTree $root): array
+{
+    $res = [];
+    return preorderTraversalHelper($root, $res);
+}
+
+function preorderTraversalHelper(?BinaryTree $tRoot, array &$arr): array
+{
+    if($tRoot !== null){
+        $arr[] = $tRoot->data;
+        preorderTraversalHelper($tRoot->left, $arr);
+        preorderTraversalHelper($tRoot->right, $arr);
+    }
+
+    return $arr;
+}
+
+// 改善後: 補助関数では再帰処理に専念
+function preorderTraversal(?BinaryTree $root): array
+{
+    $res = [];
+    preorderTraversalHelper($root, $res)
+    return $res;
+}
+
+function preorderTraversalHelper(?BinaryTree $tRoot, array &$arr): void
+{
+    if($tRoot !== null){
+        $arr[] = $tRoot->data;
+        preorderTraversalHelper($tRoot->left, $arr);
+        preorderTraversalHelper($tRoot->right, $arr);
+    }
+}
+```
