@@ -59,15 +59,49 @@
 
 ### 検証
 
-
+- 仮説に基づいた実装により、期待通りの出力結果が得られた
 
 ## ふりかえり
 
+- 配列を初期化して変数に格納し、その変数を補助関数に渡すような設計にせず、引数として渡す箇所で空配列を渡すことで初期化した
 
+- 実装自体は前回取り組んだ`preorderTraversal`の処理順が変わったのみだったため、比較的スムーズに実装できた
+再帰処理の処理の順番と戻りの処理について意識しながら取り組んだ
+
+- レビュー結果を受けて、すでに null チェックしているため無駄な処理だということがわかった
 
 ## 直面したエラーと解決策
 
+- `TypeError: Cannot read properties of undefined (reading 'push')`
+
+```
+arr.push(node.data);
+            ^
+TypeError: Cannot read properties of undefined (reading 'push')
+    at inorderTraversalHelper (/Users/mavo/project/algorithm-solutions/binary-tree/problems/10_inorderTraversal/js/src/inorderTraversal.js:10:13)
+    at inorderTraversalHelper (/Users/mavo/project/algorithm-solutions/binary-tree/problems/10_inorderTraversal/js/src/inorderTraversal.js:9:9)
+    at inorderTraversal (/Users/mavo/project/algorithm-solutions/binary-tree/problems/10_inorderTraversal/js/src/inorderTraversal.js:2:12)
+    at Object.<anonymous> (/Users/mavo/project/algorithm-solutions/binary-tree/problems/10_inorderTraversal/js/tests/inorderTraversalTest.js:6:13)
+```
+
+【内容】未定義のものに push しようとしてエラー  
+【原因】補助関数`inorderTraversalHelper`に引数として配列を渡していなかったこと  
+【解決策】引数として arr を補助関数に渡す
 
 
 ## フィードバック・改善点
 
+- `if(node === null) return null;` が不適切
+→ 処理を止めるだけでよい  
+再起呼び出しの途中で null を返すと配列が壊れてしまう可能性がある
+
+```js
+// 改善前
+if (node === null) return null;
+
+// 改善後
+if (node === null) return;
+```
+
+- ｀if (node !== null)` の条件が冗長
+すでにその上で `node === null` をチェックしているため不要
