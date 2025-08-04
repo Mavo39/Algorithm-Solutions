@@ -3,13 +3,12 @@ function inorderTraversal(root){
 }
 
 function inorderTraversalHelper(node, arr){
-    if(node === null) return null;
+    if(node === null) return;
     
-    if(node !== null){
-        inorderTraversalHelper(node.left, arr);
-        arr.push(node.data);
-        inorderTraversalHelper(node.right, arr);
-    }
+    inorderTraversalHelper(node.left, arr);
+    arr.push(node.data);
+    inorderTraversalHelper(node.right, arr);
+
     return arr;
 }
 
