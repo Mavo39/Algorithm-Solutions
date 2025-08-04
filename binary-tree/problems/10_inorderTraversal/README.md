@@ -105,7 +105,3 @@ if (node === null) return;
 
 - ｀if (node !== null)` の条件が冗長
 すでにその上で `node === null` をチェックしているため不要
-
-- inorderTraversalHelper の戻り値に arr を返すのは必須ではない
-呼び出し元（inorderTraversal）では arr を返しているので、inorderTraversalHelper の戻り値を使っていない  
-→ `return arr` は削除してOK
