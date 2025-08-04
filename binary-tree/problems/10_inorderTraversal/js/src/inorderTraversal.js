@@ -6,9 +6,9 @@ function inorderTraversalHelper(node, arr){
     if(node === null) return null;
     
     if(node !== null){
-        inorderTraversalHelper(node.left);
+        inorderTraversalHelper(node.left, arr);
         arr.push(node.data);
-        inorderTraversalHelper(node.right);
+        inorderTraversalHelper(node.right, arr);
     }
     return arr;
 }
