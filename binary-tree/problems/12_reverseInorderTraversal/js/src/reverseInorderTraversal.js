@@ -11,3 +11,5 @@ function reverseInorderTraversalHelper(root, arr){
 
     return arr;
 }
+
+module.exports = reverseInorderTraversal;
