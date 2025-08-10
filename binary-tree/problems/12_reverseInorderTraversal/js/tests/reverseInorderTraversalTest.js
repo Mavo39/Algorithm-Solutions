@@ -34,7 +34,7 @@ function reverseInorderTraversalTest(){
         const root = toBinaryTree(test.input);
         const resArr = reverseInorderTraversal(root);
         const expected = test.output;
-        const res = resArr === expected ? "True" : "False";
+        const res = resArr.toString() === expected.toString() ? "True" : "False";
         console.log(res);
     }
 }
