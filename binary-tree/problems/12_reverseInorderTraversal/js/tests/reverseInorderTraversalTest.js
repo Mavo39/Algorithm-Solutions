@@ -30,9 +30,9 @@ const tests = {
 
 function reverseInorderTraversalTest(){
     for(let test in tests){
-        const root = toBinaryTree(test['input']);
+        const root = toBinaryTree(test.input);
         const resArr = reverseInorderTraversal(root);
-        const expected = test['output'];
+        const expected = test.output;
         const res = resArr === expected ? "True" : "False";
         console.log(res);
     }
