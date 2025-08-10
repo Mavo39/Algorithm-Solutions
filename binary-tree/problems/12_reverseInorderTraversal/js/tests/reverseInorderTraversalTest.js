@@ -29,7 +29,8 @@ const tests = {
 };
 
 function reverseInorderTraversalTest(){
-    for(let test in tests){
+    for(let key in tests){
+        const test = tests[key];
         const root = toBinaryTree(test.input);
         const resArr = reverseInorderTraversal(root);
         const expected = test.output;
