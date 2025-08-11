@@ -79,6 +79,7 @@
 2. オブジェクトの正確な比較に適している 
 - for...in ループ: 配列のインデックス（"0", "1" など）をキーとして返す
 - for...of ループ: 配列の要素の値そのものを直接返す
+- Object.values()は、値を配列として返す。オブジェクトの値が配列かどうかは関係ない
 
 ```js: 例
 const arr1 = [1,2,[3,4]];
@@ -206,6 +207,36 @@ Node.js v20.12.2
 配列を文字列に変換し、文字列を比較することで中身の比較を行なう  
 ただし、当初 toString() で内容比較を行なっていたが、JSON.stringify() の方がより正確な比較ができるとわかり、後に修正
 
+### エラー5
+
+#### 内容
+tests がイテラブルではない
+
+```: メッセージ内容
+    for(let test of tests){
+                    ^
+
+TypeError: tests is not iterable
+    at reverseInorderTraversalTest (/Users/mavo/project/algorithm-solutions/binary-tree/problems/12_reverseInorderTraversal/js/tests/reverseInorderTraversalTest.js:32:21)
+    at Object.<anonymous> (/Users/mavo/project/algorithm-solutions/binary-tree/problems/12_reverseInorderTraversal/js/tests/reverseInorderTraversalTest.js:41:1)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v20.12.2
+```
+
+#### 原因
+通常のオブジェクトはイテラブルではないため  
+イテラブルなデータ型には、Array(配列)やString(文字列)などがある
+
+#### 解決策
+オブジェクトの値を配列に変換する Object.values()メソッドを使用する  
+オブジェクトをイテラブルなデータ型に変換する  
+
 
 ## フィードバック・改善点
 
@@ -232,7 +263,14 @@ for...of ループの使用することで、オブジェクトを取得して�
     }
 
 // 改善後
-    for(let test of tests){
+    for(let test of Object.values(tests)){
         const root = toBinaryTree(test.input);
     }
+
+// これによって以下のように配列が生成される
+[
+  { 'input': [0,-10,5,...], 'output': [9,5,0,...] },
+  { 'input': [5,3,6,...], 'output': [7,6,5,...] },
+  ...
+]
 ```
