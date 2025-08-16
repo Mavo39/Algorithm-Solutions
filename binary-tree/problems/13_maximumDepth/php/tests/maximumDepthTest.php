@@ -58,7 +58,9 @@ $tests = [
 
 foreach($tests as $i => $test){
     $root = toBinaryTree($test['input']);
-    
-}
+    $result = maximumDepth($root);
+    $expected = $test['output'];
+    $resultCheck = $result === $expected ? "True" : "False";
 
-// maximumDepth(toBinaryTree([0]))--> 0
+    echo "Test case {$i} : {$resultCheck}" . PHP_EOL;
+}
