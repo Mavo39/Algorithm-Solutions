@@ -11,5 +11,5 @@ function maximumDepthHelper(?BinaryTree $root, int $count): int
     $leftDepth = ($root->left !== null) ? maximumDepthHelper($root->left, $count + 1) : $count;
     $rightDepth = ($root->right !== null) ? maximumDepthHelper($root->right, $count + 1) : $count;
 
-    return $leftDepth > $rightDepth ? $leftDepth : $rightDepth;
+    return max($leftDepth, $rightDepth);
 }
