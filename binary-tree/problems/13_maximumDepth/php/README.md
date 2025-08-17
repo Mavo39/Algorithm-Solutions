@@ -51,15 +51,58 @@
 
 ### 検証
 
-
+仮説に基づき実装した結果、期待通りの出力結果が得られた  
+ただし、最初に実装したコードではできなかったため、リファクタリングを実施した
 
 ## ふりかえり
 
+- 問題の特定していく方法を少しずつだが、自分でできるようになってきた。
+- 自動テスト関数を作成して実行した結果、一部の結果が `False` になったとき、なぜこのような結果になったのかを知るために、最初にすべてのテストケースの出力結果を出力する記述を追加し、何が起きているのかの把握から入ったことはよかった。これによって、「想定よりも1足りない」という事実を知ることができたため、問題の特定がしやすくなった。
 
+```php: maximumDepthTest.phpで実装したコードの一部より
+foreach($tests as $i => $test){
+    $root = toBinaryTree($test['input']);
+    $result = maximumDepth($root);
+    $expected = $test['output'];
+    $resultCheck = $result === $expected ? "True" : "False";
+
+    echo "Test case {$i} : {$resultCheck}" . PHP_EOL;
+    echo $result . PHP_EOL; // 追加
+}
+```
 
 ## 直面したエラーと解決策
 
+### 内容
+自動テスト関数の実装結果の一部が `False` になった
 
+### 原因
+後置インクリメントを使用したことで、再帰関数に引数を渡した時に元の値と同じであったこと
+
+```php: maximumDepthHelper関数
+// 改善前
+    $leftDepth = ($root->left !== null) ? maximumDepthHelper($root->left, $count++) : $count;
+    $rightDepth = ($root->right !== null) ? maximumDepthHelper($root->right, $count++) : $count;
+
+// 改善後
+    $leftDepth = ($root->left !== null) ? maximumDepthHelper($root->left, $count + 1) : $count;
+    $rightDepth = ($root->right !== null) ? maximumDepthHelper($root->right, $count + 1) : $count;
+```
 
 ## フィードバック・改善点
 
+- `if($root->left === null && $root->right === null) return 0;` の記述はなくてもいい
+
+- 補助関数を使わず、葉ノードから根ノードに「戻る」過程で深さを積み上げる方法もある
+
+```php: 解答例（戻り値に1足していく方法）
+function maximumDepth(?BinaryTree $root): int
+{
+    if ($root === null) return 0;
+
+    $leftDepth = maximumDepth($root->left);
+    $rightDepth = maximumDepth($root->right);
+
+    return max($leftDepth, $rightDepth) + 1;
+}
+```
