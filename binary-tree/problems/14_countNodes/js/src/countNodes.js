@@ -20,3 +20,5 @@ function countNodes(root){
 
     return count;
 }
+
+module.exports = countNodes;
