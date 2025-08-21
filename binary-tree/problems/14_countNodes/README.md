@@ -48,14 +48,102 @@
 
 ### 検証
 
-
+実装方針に基づき実装した結果、期待された出力結果を得ることができた
 
 ## ふりかえり
 
-
+- Object.entries()という方法があることを知り、実際に使ってみたところ、キーと値のペアに対して便利であることがわかった
+- 変数に格納する・しないの判断がしっかりとした根拠をもってできるようにしていきたい
+- 過去に一度取り組んだかどうかで、実装スピードが違うことを実感した。今回のケースでいうところの、テストケースと出力結果をオブジェクトで管理すること
 
 ## 直面したエラーと解決策
 
+### エラー1
+```
+node countNodeTest.js
+node:internal/modules/cjs/loader:1146
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/mavo/project/algorithm-solutions/binary-tree/problems/14_countNodes/js/tests/countNodeTest.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1143:15)
+    at Module._load (node:internal/modules/cjs/loader:984:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.12.2
+```
+
+#### 原因: コマンドミス
+```sh
+# 正
+node countNodesTest.js  
+
+# 誤
+node countNodeTest.js  
+```
+
+### エラー2
+
+#### メッセージ
+
+```
+    for(let test of tests){
+                    ^
+
+TypeError: tests is not iterable
+    at countNodesTest (/Users/mavo/project/algorithm-solutions/binary-tree/problems/14_countNodes/js/tests/countNodesTest.js:28:21)
+    at Object.<anonymous> (/Users/mavo/project/algorithm-solutions/binary-tree/problems/14_countNodes/js/tests/countNodesTest.js:37:1)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+    at node:internal/main/run_main_module:28:49
+```
+
+#### 意味
+
+tests はイテラブルではない
+
+#### 原因
+
+- `for...of` はイテラブル専用のループ
+- 通常のオブジェクト ({}) はイテラブルではない  
+→ testsはオブジェクトである
+
+#### 解決策
+Object.values() or Object.entries() を使用する
+
+```js
+// 改善前
+function countNodesTest(tests){
+    for(let test of tests){
+        const root = toBinaryTree(test['input']);
+        const res = countNodes(root);
+        const resCheck = (res === test['output']) ? "True" : "False";
+
+        console.log(`Test ${key}: ${resCheck}`);
+    }
+}
+
+// 改善後
+function countNodesTest(tests){
+    for(let [key, test] of Object.entries(tests)){
+        const root = toBinaryTree(test['input']);
+        const res = countNodes(root);
+        const resCheck = (res === test['output']) ? "True" : "False";
+
+        console.log(`Test ${key}: ${resCheck}`);
+    }
+}
+```
+
+#### 学び
+`for...of` はイテラブル専用のループなので、オブジェクトには使えないこと
 
 
 ## フィードバック・改善点
