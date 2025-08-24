@@ -31,7 +31,7 @@ function allElememtsSorted(?BinaryTree $root1, ?BinaryTree $root2): array
     return $resArr;
 }
 
-function inOrderWalk(?BinaryTree $root, array $arr): array
+function inOrderWalk(?BinaryTree $root, array &$arr): array
 {
     if($root !== null){
         inOrderWalk($root->left, $arr);
