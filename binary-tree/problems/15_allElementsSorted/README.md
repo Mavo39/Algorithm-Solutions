@@ -46,18 +46,87 @@ allElementsSorted 関数は2つの二分探索木を比較して、2つの要素
 
 ### 検証
 
-
+方針に基づいた実装により、期待された出力結果を得られた
 
 ## ふりかえり
 
-
+- どうやって問題を特定するかというデバッグのスピードが少し上がった気がする
+- エラーの原因を特定するために、あえて結果を出力して、問題の特定をすることができるようになってきた。以前は闇雲に「ああでもない、こうでもない。最後はAIの助けを借りよう」だったが、その時と比較していい形で問題の特定を自力でできるようになってきた気がする
 
 ## 直面したエラーと解決策
 
+### エラー
 
+#### 内容
+出力結果がすべて "False"
 
-#### 学び
+```: 出力結果
+Test case0: Fasle
+Test case1: Fasle
+Test case2: Fasle
+Test case3: Fasle
+Test case4: Fasle
+```
 
+#### 原因
+参照渡しによる配列の更新がされていなかったこと
+
+#### 特定手順
+① echo を使って出力結果を見てみる  
+
+```php
+foreach($tests as $i => $test){
+    $root1 = toBinaryTree($test["input1"]);
+    $root2 = toBinaryTree($test["input2"]);
+    $result = allElememtsSorted($root1, $root2);
+    echo json_encode($result); // 追加
+
+    $finalResult = json_encode($test["output"]) === json_encode($result) ? "True" : "Fasle";
+
+    echo "Test case{$i}: {$finalResult}" . PHP_EOL;
+}
+```
+
+② 出力結果の確認  
+
+```: 出力結果
+[3,9]Test case0: Fasle
+[2,3]Test case1: Fasle
+[44,73]Test case2: Fasle
+[29,46]Test case3: Fasle
+[22,29]Test case4: Fasle
+```
+
+③ 気づきと仮説  
+出力結果における配列の要素数がすべて2つ  
+→ inOrderWalk()の最初の結果しか使っていない可能性  
+
+④ echo で変数に格納された値を確認  
+
+```php
+function allElememtsSorted(?BinaryTree $root1, ?BinaryTree $root2): array
+{
+    $arr1 = [];
+    $arr2 = [];
+
+    $arr1 = inOrderWalk($root1, $arr1);
+    echo json_encode($arr1); // 追加
+
+    $arr2 = inOrderWalk($root2, $arr2);
+    echo json_encode($arr2); // 追加
+    ...
+}
+```
+
+```: 出力結果
+[9][3]Test case0: Fasle
+[3][2]Test case1: Fasle
+[73][44]Test case2: Fasle
+[29][46]Test case3: Fasle
+[22][29]Test case4: Fasle
+```
+
+⑤ 配列が更新されていない → 参照渡ししていなかった  
 
 
 ## フィードバック・改善点

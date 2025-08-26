@@ -6,7 +6,10 @@ function allElememtsSorted(?BinaryTree $root1, ?BinaryTree $root2): array
     $arr2 = [];
 
     $arr1 = inOrderWalk($root1, $arr1);
+    echo json_encode($arr1);
+
     $arr2 = inOrderWalk($root2, $arr2);
+    echo json_encode($arr2);
 
     $resArr = [];
     $arr1Index = 0;
@@ -31,7 +34,7 @@ function allElememtsSorted(?BinaryTree $root1, ?BinaryTree $root2): array
     return $resArr;
 }
 
-function inOrderWalk(?BinaryTree $root, array &$arr): array
+function inOrderWalk(?BinaryTree $root, array $arr): array
 {
     if($root !== null){
         inOrderWalk($root->left, $arr);
