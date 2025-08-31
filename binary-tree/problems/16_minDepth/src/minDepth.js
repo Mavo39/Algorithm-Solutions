@@ -19,3 +19,5 @@ function minDepth(root){
 
     return level;
 }
+
+module.exports = minDepth;
