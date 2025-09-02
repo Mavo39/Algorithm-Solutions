@@ -13,8 +13,8 @@ function minDepth(root){
             if(currentNode.left === null && currentNode.right == null) return level;
             if(currentNode.left != null) queue.push(currentNode.left);
             if(currentNode.right != null) queue.push(currentNode.right);
-            level++;
         }
+        level++;
     }
 
     return level;
