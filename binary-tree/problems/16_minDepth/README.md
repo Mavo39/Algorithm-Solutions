@@ -55,18 +55,52 @@
 
 ### 検証
 
-
+実装方針に基づいた実装により、期待された出力結果を得ることができた
 
 ## ふりかえり
 
-
+- なぜそのエラーが起きたか、を一昔前に比べると落ち着いて原因を考えながら解決できるようになってきた実感があった
+- エラーの原因を特定するために何がわかればいいかを考えてからデバッグするようになってきた
 
 ## 直面したエラーと解決策
 
+### エラー件数: 1件
 
+#### 内容
+テストケース1 と 7 以外の結果が "False"
+
+#### 原因
+インクリメント処理の場所が正しくなかったこと
+
+#### 特定方法
+1. forループの最後の行に `res` の結果を出力  
+2. 予想される数字より出力結果が大きい 
+3. 数字が大きくなる箇所を特定（インクリメント）  
+4. `level++`がループ内で実行されていることに気づく
+
+```js
+// デバッグ前
+for(let [key, test] of Object.entries(tests)){
+    const root = toBinaryTree(test['input']);
+    const res = minDepth(root);
+    const resCheck = (res === test['output']) ? "True" : "False";
+
+    console.log(`Test ${key}: ${resCheck}`);
+}
+
+// デバッグ後
+for(let [key, test] of Object.entries(tests)){
+    const root = toBinaryTree(test['input']);
+    const res = minDepth(root);
+    const resCheck = (res === test['output']) ? "True" : "False";
+
+    console.log(res); // 追加して確認
+    console.log(`Test ${key}: ${resCheck}`);
+}
+```
 
 #### 学び
-
+その原因がどこで起きているのかを絞り込んでいくことで、正確な問題点を特定できるという、アドバイスを実行できた
 
 
 ## フィードバック・改善点
