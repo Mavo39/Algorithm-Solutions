@@ -11,3 +11,5 @@ let fizzbuzz = n => {
 
     return resStr;
 }
+
+module.exports = fizzbuzz;
