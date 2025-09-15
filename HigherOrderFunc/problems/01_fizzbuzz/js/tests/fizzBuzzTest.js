@@ -13,6 +13,6 @@ const tests = {
 
 for(let [key, value] of Object.entries(tests)){
     const res = fizzbuzz(value['input']);
-    const finalResult = JSON.parse(res) === JSON.parse(value['output']) ? "True" : "False";
+    const finalResult = res === value['output'] ? "True" : "False";
     console.log(`Test ${key}: ${finalResult}`);
 }
