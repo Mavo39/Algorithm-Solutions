@@ -5,3 +5,5 @@ const hasUppercaseAndLowercase = email => /[a-z]/.test(email) && /[A-Z]/.test(em
 function emailValidation(f, email){
     return f(email) ? "Email is correct." : "Email is not correct.";
 }
+
+module.exports = { doesNotStartAtWithAt, doesNotHaveSpace, hasUppercaseAndLowercase, emailValidation }; 
