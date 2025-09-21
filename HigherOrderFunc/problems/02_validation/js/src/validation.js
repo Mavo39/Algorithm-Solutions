@@ -1,5 +1,5 @@
 const doesNotStartAtWithAt = email => email[0] != "@";
-const doesNotHaveSpace = email => /\s/.test(email);
+const doesNotHaveSpace = email => !/\s/.test(email);
 const hasUppercaseAndLowercase = email => /[a-z]/.test(email) && /[A-Z]/.test(email);
 
 function emailValidation(f, email){
