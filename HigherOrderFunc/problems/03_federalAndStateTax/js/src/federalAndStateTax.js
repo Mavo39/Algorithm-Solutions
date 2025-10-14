@@ -14,7 +14,7 @@ let getTotalTaxAmount = (income, state) => {
     return federalTaxAmount + stateTaxAmount;
 };
 
-let printTaxByState = income => state => {
+let printTaxByState = state => income => {
     console.log(`Federal Tax: ${getFederalTaxAmount(income)}\n${state} State Tax: ${getStateTaxAmount(income, state)}\nTax Amount: ${getTotalTaxAmount(income, state)}`);
 }
 
