@@ -18,4 +18,4 @@ let printTaxByState = income => state => {
     console.log(`Federal Tax: ${getFederalTaxAmount(income)}\n${state} State Tax: ${getStateTaxAmount(income, state)}\nTax Amount: ${getTotalTaxAmount(income, state)}`);
 }
 
-module.exports = { getFederalTaxAmount, getStateTaxAmount, getTotalTaxAmount, printTaxByState };
+module.exports = printTaxByState;
