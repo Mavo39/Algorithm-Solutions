@@ -1,10 +1,12 @@
+const FEDERAL_TAX_RATE = 0.21;
+
 const stateTaxRate = {
     "Arizona" : 0.049,
     "California" : 0.088,
     "Northcarolina" : 0.025
 };
 
-let getFederalTaxAmount = income => income * 0.21;
+let getFederalTaxAmount = income => income * FEDERAL_TAX_RATE;
 
 let getStateTaxAmount = (income, state) => income * stateTaxRate[state];
 
