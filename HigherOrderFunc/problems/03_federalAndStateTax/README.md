@@ -85,21 +85,55 @@ getTaxInNC(500000)
 
 ### 検証
 
-
+実装方針に基づいた実装により仮説を検証できた
 
 ## ふりかえり
 
-
+- 高階関数を使って実装する場合は、引数を渡す順番に気を配ること
+- 一般化するためには、何が共通しているか、その構造を見抜く必要があるとわかったこと 
 
 ## 直面したエラーと解決策
 
+## エラー
 
+```: 内容
+const getTaxInAZ = printTaxByState("Arizona");
+                   ^
+
+TypeError: printTaxByState is not a function
+    at Object.<anonymous> (/Users/mavo/project/algorithm-solutions/HigherOrderFunc/problems/03_federalAndStateTax/js/tests/federalAndStateTaxTest.js:3:20)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v20.12.2
+```
+
+## 原因
+
+- 引数指定の順番  
+→ 高階関数の定義では引数を2つ指定する必要があるが、最初に渡しているのが「州」のみ  
+
+
+## 解決手順
+
+1. 関数の体裁になっているか確認  
+→ 問題なさそう
+
+2. 関数が動作するか定義したファイルでコンソール出力を試す  
+→ 動かない
+→ ということは、関数の使い方を誤っている可能性  
+→ 引数の渡し方に問題があると発覚
 
 
 #### 学び
 
-
+- 先に固定したい情報が何かを決めてから実装することで再利用性が高まると実感
+- 実際にテストしてみて何がダメかを仮説をもとに実験していくことが大事だということ
 
 ## フィードバック・改善点
 
-
+- 連邦税は固定値なので、定数として定義できる  
