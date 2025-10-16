@@ -1,0 +1,139 @@
+# 問題
+
+**異なる州の法人税を計算する高階関数を作成する問題**  
+一つの汎用的な関数が異なる州の税率を処理し、必要に応じて関数を返すことで、各州ごとの税額を計算します。　　
+これにより、コードの重複が減り、将来的な変更や拡張が容易になることを目指します。　　
+
+これらのラムダ関数は、`printTaxByState(string state)` 高階関数を使用して生成されます。  
+この高階関数は、指定された州の名前を受け取り、その州に適した税計算のラムダ関数を返します。　　
+
+
+### 税率一覧
+
+| 税種別 | 適用州 | 税率(%) |
+| - | - | - |
+| 連邦税 | 全州 | 21 |
+| 州税 | アリゾナ | 4.9 |
+| 州税 | カリフォルニア | 8.8 |
+| 州税 | ノースカロライナ | 2.5 |
+
+### 各ラムダ関数
+
+#### `void getTaxInAZ(int income)`
+会社の利益を渡すと、連邦税、アリゾナの州税、合計の税金を出力するラムダ関数  
+
+#### `void getTaxInCA(int income)`
+会社の利益を渡すと、連邦税、カリフォルニアの州税、合計の税金を出力するラムダ関数  
+
+#### `void getTaxInNC(int income)`
+会社の利益を渡すと、連邦税、ノースカロライナの州税、合計の税金を出力するラムダ関数  
+
+
+## この問題に取り組む目的
+
+- 複数のラムダ関数を定義し、関数を再利用する方法を身につけること  
+- 可読性や保守性を実装を通じて学ぶこと  
+
+
+## テストケース
+
+```sh: ケース1
+getTaxInAZ = printTaxByState("Arizona")
+getTaxInAZ(400000)
+--> Federal Tax: 84000
+--> Arizona State Tax: 19600
+--> Tax Amount: 103600
+```
+
+```sh: ケース2
+getTaxInCA = printTaxByState("California")
+getTaxInCA(100000)
+--> Federal Tax: 21000
+--> California State Tax: 8800
+--> Tax Amount: 29800
+```
+
+```sh: ケース3
+getTaxInNC = printTaxByState("Northcarolina")
+getTaxInNC(500000)
+--> Federal Tax: 105000
+--> Northcarolina State Tax: 12500
+--> Tax Amount: 117500
+```
+
+
+## 想定されるエラー・エッジケース
+
+- 指定した州が3つの州以外の場合  
+- 会社の利益がマイナスの場合  
+
+## 仮説・検証
+
+### 仮説
+
+ラムダ関数を3つ実装し、printTaxByState 関数に当てはめる  
+
+#### 実装方針
+  
+- ラムダ関数を3つ実装する
+- printTaxByState 関数を実装する
+
+#### この実装方針にした理由
+
+- 3つの検証ルールをそれぞれ独立したラムダ関数として実装し、それらをprintTaxByState関数に渡すという設計にする、という問題の要件を満たすため
+- 検証ルールを個別のラムダ関数として定義することで、それぞれのルールを再利用できるため  
+
+### 検証
+
+実装方針に基づいた実装により仮説を検証できた
+
+## ふりかえり
+
+- 高階関数を使って実装する場合は、引数を渡す順番に気を配ること
+- 一般化するためには、何が共通しているか、その構造を見抜く必要があるとわかったこと 
+
+## 直面したエラーと解決策
+
+## エラー
+
+```: 内容
+const getTaxInAZ = printTaxByState("Arizona");
+                   ^
+
+TypeError: printTaxByState is not a function
+    at Object.<anonymous> (/Users/mavo/project/algorithm-solutions/HigherOrderFunc/problems/03_federalAndStateTax/js/tests/federalAndStateTaxTest.js:3:20)
+    at Module._compile (node:internal/modules/cjs/loader:1369:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1427:10)
+    at Module.load (node:internal/modules/cjs/loader:1206:32)
+    at Module._load (node:internal/modules/cjs/loader:1022:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v20.12.2
+```
+
+## 原因
+
+- 引数指定の順番  
+→ 高階関数の定義では引数を2つ指定する必要があるが、最初に渡しているのが「州」のみ  
+
+
+## 解決手順
+
+1. 関数の体裁になっているか確認  
+→ 問題なさそう
+
+2. 関数が動作するか定義したファイルでコンソール出力を試す  
+→ 動かない
+→ ということは、関数の使い方を誤っている可能性  
+→ 引数の渡し方に問題があると発覚
+
+
+#### 学び
+
+- 先に固定したい情報が何かを決めてから実装することで再利用性が高まると実感
+- 実際にテストしてみて何がダメかを仮説をもとに実験していくことが大事だということ
+
+## フィードバック・改善点
+
+- 連邦税は固定値なので、定数として定義できる  
