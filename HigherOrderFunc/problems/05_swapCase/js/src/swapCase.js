@@ -4,3 +4,5 @@ function swapCase(charList){
         else if(/[A-Z]/.test(char)) return char.toLowerCase();
     });
 }
+
+module.exports = swapCase;
