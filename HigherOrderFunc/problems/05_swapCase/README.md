@@ -62,73 +62,7 @@ Test case2: False
 Test case3: False
 ```
 
-```js: 改善前
-const swapCase = require('../src/swapCase.js');
-
-const tests = {
-    "case1": {
-        "input": ['l','A','m','b','D','A'],
-        "output": ['L','a','M','B','d','a']
-    },
-    "case2": {
-        "input": ['a','E','s','P','A'],
-        "output": ['A','e','S','p','a']
-    },
-    "case3": {
-        "input": ['f','U','N','c','T','I','o','n'],
-        "output": ['F','u','n','C','t','i','O','N']
-    }
-}
-
-for(let [key, value] of Object.entries(tests)){
-    const output = swapCase(value['input']);
-    const result = output === value['output'] ? "True" : "False";
-    console.log(`Test ${key}: ${result}`);
-}
-```
-
-### コンソールに出力
-
-```js
-for(let [key, value] of Object.entries(tests)){
-    const output = swapCase(value['input']);
-    console.log(output); // 追加
-    const result = output === value['output'] ? "True" : "False";
-    console.log(`Test ${key}: ${result}`);
-}
-```
-
-```sh: 出力結果
-[ 'L', 'a', 'M', 'B', 'd', 'a' ]
-Test case1: False
-[ 'A', 'e', 'S', 'p', 'a' ]
-Test case2: False
-[
-  'F', 'u', 'n',
-  'C', 't', 'i',
-  'O', 'N'
-]
-Test case3: False
-```
-
-内容は期待している出力結果と同じだが、False になっていることがわかった
-
-### 原因
-
-配列の比較の仕方  
-現状だと配列の参照の比較になっている  
-
-### 解決策
-
-`JSON.stringify()` を使って、文字列を比較する  
-
-```js: 改善後
-for(let [key, value] of Object.entries(tests)){
-    const output = swapCase(value['input']);
-    const result = JSON.stringify(output) === JSON.stringify(value['output']) ? "True" : "False"; // JSON.stringify()を使用
-    console.log(`Test ${key}: ${result}`);
-}
-```
+[Qiita記事](https://qiita.com/mabo23/items/b9865d721c0aa563117c)
 
 #### 学び
 
