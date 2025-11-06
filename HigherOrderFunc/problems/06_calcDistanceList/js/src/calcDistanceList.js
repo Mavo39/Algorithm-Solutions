@@ -5,3 +5,5 @@ function calcDistanceList(pointList){
         return res;
     });
 }
+
+module.exports = calcDistanceList;
